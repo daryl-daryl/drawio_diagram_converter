@@ -1,5 +1,6 @@
 from context import bin
-
+import os
+print("Current Working Directory:", os.getcwd())
 Table = bin.Table
 Page = bin.Page
 
@@ -32,7 +33,14 @@ def example2(name: str) -> None:
     Example of using json file
     """
     page = Page()
-    page.import_from_json("sample.json")
+
+    # Get the directory of the current script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the path to the sample.json file
+    json_file_path = os.path.join(script_dir, 'sample.json')
+    
+    page.import_from_json(json_file_path)
     page.export(name)
 
 
